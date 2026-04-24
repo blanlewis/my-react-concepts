@@ -2,6 +2,6 @@
 import CommonMiniDrawerLayout from "@/components/CommonMiniDrawerLayout";
 export default function Home() {
   return (
-      <CommonMiniDrawerLayout />
+      <CommonMiniDrawerLayout appHeaderTitle="Learning Next JS" />
   );
 }

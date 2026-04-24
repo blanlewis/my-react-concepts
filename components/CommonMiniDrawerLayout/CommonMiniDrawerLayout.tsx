@@ -103,7 +103,53 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-const CommonMiniDrawerLayout = () => {
+interface SecondaryListItemsProps {
+  open: boolean;
+}
+
+const SecondaryListItems = ({ open }: SecondaryListItemsProps) => {
+  return (
+    <List>
+      {["Browser developer tools", "React extensions", "Hacks"].map(
+        (text, index) => (
+          <ListItem key={text} disablePadding sx={{ display: "block" }}>
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                px: 2.5,
+                justifyContent: open ? "flex-start" : "center",
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  justifyContent: "center",
+                  mr: open ? 3 : "auto",
+                }}
+              >
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+
+              <ListItemText
+                primary={text}
+                sx={{
+                  opacity: open ? 1 : 0,
+                  whiteSpace: "nowrap",
+                }}
+              />
+            </ListItemButton>
+          </ListItem>
+        )
+      )}
+    </List>
+  );
+};
+
+interface CommonMiniDrawerLayoutProps {
+  appHeaderTitle?: string;
+}
+
+const CommonMiniDrawerLayout = ({ appHeaderTitle }: CommonMiniDrawerLayoutProps) => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -135,7 +181,7 @@ const CommonMiniDrawerLayout = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Mini variant drawer
+            {appHeaderTitle}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -147,7 +193,7 @@ const CommonMiniDrawerLayout = () => {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          {['Next JS Basics', 'React Hooks', 'Context', 'MUI Components'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={[
@@ -198,8 +244,8 @@ const CommonMiniDrawerLayout = () => {
           ))}
         </List>
         <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
+        {/* <List>
+          {['Brower developer tools', 'React extensions', 'Hacks'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={[
@@ -248,7 +294,8 @@ const CommonMiniDrawerLayout = () => {
               </ListItemButton>
             </ListItem>
           ))}
-        </List>
+        </List> */}
+        <SecondaryListItems open={open} />
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
