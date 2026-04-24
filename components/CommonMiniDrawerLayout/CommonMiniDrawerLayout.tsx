@@ -105,11 +105,12 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 interface FirstListItemsProps {
   open: boolean;
+  listItems: string[];
 }
-const FirstListItems = ({ open }: FirstListItemsProps) => {
+const FirstListItems = ({ open, listItems }: FirstListItemsProps) => {
   return (
           <List>
-          {['Next JS Basics', 'React Hooks', 'Context', 'MUI Components'].map((text, index) => (
+          {listItems.map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={[
@@ -164,12 +165,13 @@ const FirstListItems = ({ open }: FirstListItemsProps) => {
 
 interface SecondaryListItemsProps {
   open: boolean;
+  listItems: string[];
 }
 
-const SecondaryListItems = ({ open }: SecondaryListItemsProps) => {
+const SecondaryListItems = ({ open, listItems }: SecondaryListItemsProps) => {
   return (
     <List>
-      {["Browser developer tools", "React extensions", "Hacks"].map(
+      {listItems.map(
         (text, index) => (
           <ListItem key={text} disablePadding sx={{ display: "block" }}>
             <ListItemButton
@@ -205,10 +207,12 @@ const SecondaryListItems = ({ open }: SecondaryListItemsProps) => {
 };
 
 interface CommonMiniDrawerLayoutProps {
-  appHeaderTitle?: string;
+  appHeaderTitle: string;
+  firstListItems: string[];
+  secondaryListItems: string[];
 }
 
-const CommonMiniDrawerLayout = ({ appHeaderTitle }: CommonMiniDrawerLayoutProps) => {
+const CommonMiniDrawerLayout = ({ appHeaderTitle, firstListItems, secondaryListItems }: CommonMiniDrawerLayoutProps) => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -251,9 +255,9 @@ const CommonMiniDrawerLayout = ({ appHeaderTitle }: CommonMiniDrawerLayoutProps)
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <FirstListItems open={open} />
+        <FirstListItems open={open} listItems={firstListItems} />
         <Divider />
-        <SecondaryListItems open={open} />
+        <SecondaryListItems open={open} listItems={secondaryListItems} />
       </Drawer>
       <Box component="main" sx={{  mt: '64px'}}>
         <>Reserved for main</>
