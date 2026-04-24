@@ -255,8 +255,7 @@ const CommonMiniDrawerLayout = ({ appHeaderTitle }: CommonMiniDrawerLayoutProps)
         <Divider />
         <SecondaryListItems open={open} />
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerHeader />
+      <Box component="main" sx={{  mt: '64px'}}>
         <>Reserved for main</>
       </Box>
     </Box>
