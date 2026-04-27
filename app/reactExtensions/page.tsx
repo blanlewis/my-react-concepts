@@ -3,10 +3,13 @@ import { useState } from "react";
 import { Box, Button, List, ListItem, Typography } from "@mui/material";
 import ReflexDragger from "@/components/ReflexDragger";
 import UsingDragAndDrop from "@/components/UsingDragAndDrop";
+import dynamic from "next/dynamic";
+const LeafletMap = dynamic(() => import("@/components/LeafletMap"), { ssr: false });
 
 enum Section {
   ReflexSplitter = "ReflexSplitter",
   DragAndDrop = "DragAndDrop",
+  LeafletMap = "LeafletMap",
 }
 
 const ReactExtensions = () => {
@@ -53,6 +56,12 @@ const ReactExtensions = () => {
       {active === Section.DragAndDrop && (
         <Box sx={{ mt: 3 }}>
           <UsingDragAndDrop />
+        </Box>
+      )}
+
+      {active === Section.LeafletMap && (
+        <Box sx={{ mt: 3 }}>
+          <LeafletMap />
         </Box>
       )}
     </Box>
