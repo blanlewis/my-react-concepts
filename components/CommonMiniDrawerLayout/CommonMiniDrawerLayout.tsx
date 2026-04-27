@@ -273,7 +273,7 @@ const CommonMiniDrawerLayout = ({ appHeaderTitle, firstListItems, secondaryListI
         <Divider />
         <SecondaryListItems open={open} listItems={secondaryListItems} />
       </Drawer>
-      <Box component="main" sx={{  mt: '64px'}}>
+      <Box component="main" sx={{ mt: '64px', border: '1px solid blue', width: '100%', height: 'calc(100vh - 64px)' }}>
         {appBody}
       </Box>
     </Box>
