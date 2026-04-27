@@ -1,5 +1,8 @@
 "use client";
 import CommonMiniDrawerLayout from "@/components/CommonMiniDrawerLayout";
+import ReflexDragger from "@/components/ReflexDragger";
+import { Box } from "@mui/material";
+
 export default function Home() {
   return (
       <CommonMiniDrawerLayout
@@ -15,6 +18,28 @@ export default function Home() {
           { label: 'React extensions', route: '/reactExtensions' },
           { label: 'Hacks', route: '/hacks' },
         ]}
+        appBody={
+        <Box
+          sx={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            
+          }}
+        >
+          <ReflexDragger
+            reflexContainerOrientation="vertical"
+            leftpaneComponent={<Box>Left Pane Content</Box>}
+            rightpaneComponent={<Box>Right Pane Content</Box>}
+            minimumLeftPaneWidth={500}
+            minimumRightPaneWidth={500}
+            splitterWidth={10}
+            initialLeftFlex={0.5}
+            initialRightFlex={0.5}
+          />
+        </Box>}  
       />
   );
 }

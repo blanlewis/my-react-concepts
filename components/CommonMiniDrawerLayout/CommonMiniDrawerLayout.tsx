@@ -223,9 +223,10 @@ interface CommonMiniDrawerLayoutProps {
   appHeaderTitle: string;
   firstListItems: FirstListItem[];
   secondaryListItems: SecondaryListItem[];
+  appBody: React.ReactNode;
 }
 
-const CommonMiniDrawerLayout = ({ appHeaderTitle, firstListItems, secondaryListItems }: CommonMiniDrawerLayoutProps) => {
+const CommonMiniDrawerLayout = ({ appHeaderTitle, firstListItems, secondaryListItems, appBody }: CommonMiniDrawerLayoutProps) => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -273,7 +274,7 @@ const CommonMiniDrawerLayout = ({ appHeaderTitle, firstListItems, secondaryListI
         <SecondaryListItems open={open} listItems={secondaryListItems} />
       </Drawer>
       <Box component="main" sx={{  mt: '64px'}}>
-        <>Reserved for main</>
+        {appBody}
       </Box>
     </Box>
   );
