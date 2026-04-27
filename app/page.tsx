@@ -31,8 +31,8 @@ export default function Home() {
         >
           <ReflexDragger
             reflexContainerOrientation="vertical"
-            leftpaneComponent={<Box>Left Pane Content</Box>}
-            rightpaneComponent={<Box>Right Pane Content</Box>}
+            leftpaneComponent={<Box width="100%" height="100%" border="1px solid black" display="flex" alignItems="center" justifyContent="center">Left Pane Content</Box>}
+            rightpaneComponent={<Box width="100%" height="100%" border="1px solid blue" display="flex" alignItems="center" justifyContent="center">Right Pane Content</Box>}
             minimumLeftPaneWidth={500}
             minimumRightPaneWidth={500}
             splitterWidth={10}
