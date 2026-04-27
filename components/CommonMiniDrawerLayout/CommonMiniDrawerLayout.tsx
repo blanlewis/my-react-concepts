@@ -18,6 +18,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import Link from 'next/link';
 
 const drawerWidth = 240;
 
@@ -103,16 +104,22 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
+interface FirstListItem {
+  label: string;
+  route: string;
+}
+
 interface FirstListItemsProps {
   open: boolean;
-  listItems: string[];
+  listItems: FirstListItem[];
 }
 const FirstListItems = ({ open, listItems }: FirstListItemsProps) => {
   return (
           <List>
-          {listItems.map((text, index) => (
+          {listItems.map(({ label: text, route }, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
+                {...(route ? { component: Link, href: route } : {})}
                 sx={[
                   {
                     minHeight: 48,
@@ -163,18 +170,24 @@ const FirstListItems = ({ open, listItems }: FirstListItemsProps) => {
   );
 };
 
+interface SecondaryListItem {
+  label: string;
+  route: string;
+}
+
 interface SecondaryListItemsProps {
   open: boolean;
-  listItems: string[];
+  listItems: SecondaryListItem[];
 }
 
 const SecondaryListItems = ({ open, listItems }: SecondaryListItemsProps) => {
   return (
     <List>
       {listItems.map(
-        (text, index) => (
+        ({ label: text, route }, index) => (
           <ListItem key={text} disablePadding sx={{ display: "block" }}>
             <ListItemButton
+              {...(route ? { component: Link, href: route } : {})}
               sx={{
                 minHeight: 48,
                 px: 2.5,
@@ -208,11 +221,12 @@ const SecondaryListItems = ({ open, listItems }: SecondaryListItemsProps) => {
 
 interface CommonMiniDrawerLayoutProps {
   appHeaderTitle: string;
-  firstListItems: string[];
-  secondaryListItems: string[];
+  firstListItems: FirstListItem[];
+  secondaryListItems: SecondaryListItem[];
+  appBody: React.ReactNode;
 }
 
-const CommonMiniDrawerLayout = ({ appHeaderTitle, firstListItems, secondaryListItems }: CommonMiniDrawerLayoutProps) => {
+const CommonMiniDrawerLayout = ({ appHeaderTitle, firstListItems, secondaryListItems, appBody }: CommonMiniDrawerLayoutProps) => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -259,8 +273,8 @@ const CommonMiniDrawerLayout = ({ appHeaderTitle, firstListItems, secondaryListI
         <Divider />
         <SecondaryListItems open={open} listItems={secondaryListItems} />
       </Drawer>
-      <Box component="main" sx={{  mt: '64px'}}>
-        <>Reserved for main</>
+      <Box component="main" sx={{ mt: '64px', border: '1px solid blue', width: '100%', height: 'calc(100vh - 64px)' }}>
+        {appBody}
       </Box>
     </Box>
   );
