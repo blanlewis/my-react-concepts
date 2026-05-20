@@ -1,17 +1,20 @@
 "use client";
-import {useDraggable} from '@dnd-kit/react';
+import { ReactNode } from 'react';
+import { useDraggable } from '@dnd-kit/react';
 
-function Draggable() {
-  const {ref} = useDraggable({
-    id: 'draggable',
-  });
+interface DraggableProps {
+  id: string;
+  children?: ReactNode;
+}
+
+function Draggable({ id, children }: DraggableProps) {
+  const { ref } = useDraggable({ id });
 
   return (
     <button ref={ref}>
-      Draggable
+      {children}
     </button>
   );
 }
-
 
 export default Draggable;

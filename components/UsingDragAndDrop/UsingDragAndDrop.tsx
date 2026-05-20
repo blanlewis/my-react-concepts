@@ -1,26 +1,32 @@
 "use client";
-import {DragDropProvider} from '@dnd-kit/react';
-import Draggable from '../DragandDrop/Draggable';
-import Droppable from '../DragandDrop/Droppable';
 import { useState } from 'react';
+import { DragDropProvider } from '@dnd-kit/react';
+
+import Droppable from '../DragandDrop/Droppable';
+import Draggable from '../DragandDrop/Draggable';
 
 function UsingDragAndDrop() {
-  const [isDropped, setIsDropped] = useState(false);
+  const targets = ['A', 'B', 'C'];
+  const [target, setTarget] = useState<string | undefined>();
+  const draggable = (
+    <Draggable id="draggable">Drag me</Draggable>
+  );
 
   return (
     <DragDropProvider
       onDragEnd={(event) => {
         if (event.canceled) return;
 
-        const {target} = event.operation;
-        setIsDropped(target?.id === 'droppable');
+        setTarget(event.operation.target?.id as string | undefined);
       }}
     >
-      {!isDropped && <Draggable />}
+      {!target ? draggable : null}
 
-      <Droppable id="droppable">
-        {isDropped && <Draggable />}
-      </Droppable>
+      {targets.map((id) => (
+        <Droppable key={id} id={id}>
+          {target === id ? draggable : `Droppable ${id}`}
+        </Droppable>
+      ))}
     </DragDropProvider>
   );
 }
