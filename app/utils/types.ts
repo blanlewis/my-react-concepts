@@ -1,19 +1,13 @@
-interface CustomHoookProps {
-    name: string;
-    age: number;
-    email: string;
+interface CustomHookProps {
+    nameAndRole:{name:string|null, role:string|null},
 }
 
 type CustomHookAction =
-    | { type: "SET_NAME"; payload: string }
-    | { type: "SET_AGE"; payload: number }
-    | { type: "SET_EMAIL"; payload: string };
+    | { type: "SET_NAME_AND_ROLE"; payload: { name: string | null, role: string | null } };
 
-const customHookInitialState: CustomHoookProps = {
-    name: "",
-    age: 0,
-    email: "",
+const customHookInitialState: CustomHookProps = {
+    nameAndRole:{name:null, role:null},
 };
 
-export type { CustomHoookProps, CustomHookAction };
+export type { CustomHookProps, CustomHookAction };
 export { customHookInitialState };
