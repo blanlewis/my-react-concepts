@@ -1,10 +1,10 @@
 import { createContext, useReducer, ReactNode, Dispatch } from "react";
-import { CustomHoookProps, CustomHookAction } from "./types";
+import { CustomHookState, CustomHookAction } from "./types";
 import { customHookInitialState } from "./types";
 import { customHookReducer } from "./reducer";
 
 interface CustomHookContextValue {
-    state: CustomHoookProps;
+    state: CustomHookState;
     dispatch: Dispatch<CustomHookAction>;
 }
 

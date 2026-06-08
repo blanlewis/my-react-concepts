@@ -1,6 +1,6 @@
-import { useContext } from "react";
+import { useContext} from "react";
 import { CustomHookContext } from "./context";
-import { CustomHookProps } from "./types";
+import { CustomHookState } from "./types";
 import { customHookInitialFetch } from "./service";
 
 const useCustomHook = () => {
@@ -9,19 +9,17 @@ const useCustomHook = () => {
         throw new Error("useCustomHook must be used within a CustomHookProvider");
     }
     const { state, dispatch } = context;
-    
-    const getUser = async () => {
+
+    const getCustomHookState = async () => {
         const data = await customHookInitialFetch();
+        if (!data) return;
         dispatch({
             type: "SET_NAME_AND_ROLE",
-            payload: data,
+            payload: data.nameAndRole,
         });
     };
-    getUser();
-    console.log("Custom Hook State:", state);
 
-
-    const setCustomHookState=(customHookState:CustomHookProps)=>{
+    const setCustomHookState=(customHookState:CustomHookState)=>{
         dispatch({ type: "SET_NAME_AND_ROLE", payload: customHookState.nameAndRole });
     }
 

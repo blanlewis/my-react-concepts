@@ -1,6 +1,6 @@
-import { CustomHookProps, CustomHookAction } from "./types";
+import { CustomHookState, CustomHookAction } from "./types";
 
-const customHookReducer = (state: CustomHookProps, action: CustomHookAction): CustomHookProps => {
+const customHookReducer = (state: CustomHookState, action: CustomHookAction): CustomHookState => {
     switch (action.type) {
         case "SET_NAME_AND_ROLE":
             return { ...state, nameAndRole: action.payload };
