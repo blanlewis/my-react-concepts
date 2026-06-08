@@ -6,7 +6,7 @@ const useCustomHook = () => {
     if (!context) {
         throw new Error("useCustomHook must be used within a CustomHookProvider");
     }
-    return context;
+    const { state, dispatch } = context;
 };
 
 export { useCustomHook };
