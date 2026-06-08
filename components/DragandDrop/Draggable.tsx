@@ -7,22 +7,18 @@ interface DraggableProps {
   children?: ReactNode;
 }
 
-function Draggable({ id, children }: DraggableProps) {
-  const { ref } = useDraggable({ id });
+function Draggable({ id, children }: Readonly<DraggableProps>) {
+  const { ref, isDragging } = useDraggable({ id });
 
   return (
     <div
       ref={ref}
       style={{
-        padding: '14px 18px',
-        background: '#2563eb',
-        color: '#fff',
-        borderRadius: '10px',
-        cursor: 'grab',
-        boxShadow: '0 4px 12px rgba(37,99,235,0.3)',
-        fontWeight: 600,
-        fontSize: '14px',
+        cursor: isDragging ? 'grabbing' : 'grab',
         userSelect: 'none',
+        display: 'inline-block',
+        position: 'relative',
+        zIndex: isDragging ? 1000 : 1,
       }}
     >
       {children}

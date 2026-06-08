@@ -19,9 +19,11 @@ function Droppable({ id, children }: DroppableProps) {
         borderRadius: '12px',
         minHeight: '120px',
         background: isDropTarget ? '#eff6ff' : '#f9fafb',
-        transition: 'border-color 0.15s, background 0.15s',
+        transition: 'border-color 0.15s, background 0.15s, z-index 0s',
         display: 'flex',
         alignItems: 'flex-start',
+        position: 'relative',
+        zIndex: isDropTarget ? 10 : 1,
       }}
     >
       {children}

@@ -1,18 +1,32 @@
 "use client";
-import { useState } from 'react';
+import { ComponentType, ReactNode, useState } from 'react';
 import { DragDropProvider } from '@dnd-kit/react';
 import { Box } from '@mui/material';
 
 import Droppable from '../DragandDrop/Droppable';
 import Draggable from '../DragandDrop/Draggable';
 
-const trips = ['Trip 1', 'Trip 2', 'Trip 3'];
+interface UsingDragAndDropProps {
+  draggableComponent: ComponentType<{ label: string }>;
+  tripsCard: ComponentType<{ label: string; children?: ReactNode }>;
+  trips: string[];
+  getLabel: (trip: string | undefined) => string;
+}
 
-function UsingDragAndDrop() {
+function UsingDragAndDrop({
+  draggableComponent: DraggableComponent,
+  tripsCard: TripsCard,
+  trips,
+  getLabel,
+}: Readonly<UsingDragAndDropProps>) {
   const [target, setTarget] = useState<string | undefined>();
 
-  const bookingLabel = target ? `${target} Booking Card` : 'Booking Card';
-  const draggable = <Draggable id="draggable">{bookingLabel}</Draggable>;
+  const bookingLabel = getLabel(target);
+  const draggable = (
+    <Draggable id="draggable">
+      <DraggableComponent label={bookingLabel} />
+    </Draggable>
+  );
 
   return (
     <DragDropProvider
@@ -34,22 +48,17 @@ function UsingDragAndDrop() {
           alignItems: 'center',
           gap: '12px',
         }}>
+          <Box component="span" sx={{ color: '#6b7280', fontSize: '13px', flexShrink: 0 }}>Available</Box>
           {!target && draggable}
         </Box>
 
         <Box sx={{ display: 'flex', gap: '20px' }}>
           {trips.map((trip) => (
-            <Box key={trip} sx={{ flex: 1 }}>
-              <Box component="p" sx={{ margin: '0 0 8px', fontWeight: 600, color: '#374151', fontSize: '14px' }}>
-                {trip}
-              </Box>
+            <TripsCard key={trip} label={trip}>
               <Droppable id={trip}>
-                {target === trip
-                  ? draggable
-                  : null
-                }
+                {target === trip ? draggable : null}
               </Droppable>
-            </Box>
+            </TripsCard>
           ))}
         </Box>
       </Box>

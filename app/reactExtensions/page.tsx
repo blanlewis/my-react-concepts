@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Box, Button, List, ListItem, Typography } from "@mui/material";
 import ReflexDragger from "@/components/ReflexDragger";
-import UsingDragAndDrop from "@/components/UsingDragAndDrop";
+import BookingAndTrips from "@/components/BookingAndTrips";
 import dynamic from "next/dynamic";
 const LeafletMap = dynamic(() => import("@/components/LeafletMap"), { ssr: false });
 
@@ -55,7 +55,7 @@ const ReactExtensions = () => {
 
       {active === Section.DragAndDrop && (
         <Box sx={{ mt: 3 }}>
-          <UsingDragAndDrop />
+          <BookingAndTrips />
         </Box>
       )}
 
