@@ -1,9 +1,16 @@
+import { useEffect } from "react";
 import CommonMiniDrawerLayout from "@/components/CommonMiniDrawerLayout";
 import { Box } from "@mui/material";
 import ReflexDragger from "@/components/ReflexDragger";
 import { useCustomHook } from "@/app/utils/hook";
 
 const MyReactConceptLayout =()=>{
+    const { loadCustomHookData } = useCustomHook();
+    
+    useEffect(() => {
+        loadCustomHookData();
+    }, []);
+
     return(
         <CommonMiniDrawerLayout
             appHeaderTitle="Learning Next JS"

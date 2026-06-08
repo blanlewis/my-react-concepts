@@ -1,6 +1,6 @@
 import { useContext} from "react";
 import { CustomHookContext } from "./context";
-import { CustomHookState } from "./types";
+import { CustomHookState,CustomHookActionEnum } from "./types";
 import { customHookInitialFetch } from "./service";
 
 const useCustomHook = () => {
@@ -10,21 +10,19 @@ const useCustomHook = () => {
     }
     const { state, dispatch } = context;
 
-    const getCustomHookState = async () => {
+    const loadCustomHookData = async () => {
         const data = await customHookInitialFetch();
-        if (!data) return;
-        dispatch({
-            type: "SET_NAME_AND_ROLE",
-            payload: data.nameAndRole,
-        });
+        console.log("Fetched data:", data);
+        if (data) setCustomHookState(data);
     };
 
     const setCustomHookState=(customHookState:CustomHookState)=>{
-        dispatch({ type: "SET_NAME_AND_ROLE", payload: customHookState.nameAndRole });
+        dispatch({ type: CustomHookActionEnum.SET_CUSTOM_HOOK_DATA, payload: customHookState.nameAndRole });
     }
 
     return {
         state,
+        loadCustomHookData,
         setCustomHookState
     };
 };
