@@ -20,4 +20,4 @@ const CustomHookProvider = ({ children }: { children: ReactNode }) => {
     );
 };
 
-export { CustomHookProvider };
+export { CustomHookContext, CustomHookProvider };
