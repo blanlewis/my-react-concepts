@@ -11,7 +11,8 @@ const MyReactConceptLayout =()=>{
     //     loadCustomHookData();
     // }, []);
 
-    const { fetchCustomHookData } = useCustomHook();
+    const { fetchCustomHookData,nameAndRole } = useCustomHook();
+    console.log("nameAndRole in MyReactConceptLayout:", nameAndRole);
     useEffect(() => {
         fetchCustomHookData();
     }, []);

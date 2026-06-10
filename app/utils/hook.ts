@@ -31,7 +31,7 @@ const useCustomHook = () => {
     }
 
     return {
-        state,
+        ...state,
         // This was basic learning.
         // loadCustomHookData,
         fetchCustomHookData,
