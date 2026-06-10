@@ -5,10 +5,15 @@ import ReflexDragger from "@/components/ReflexDragger";
 import { useCustomHook } from "@/app/utils/hook";
 
 const MyReactConceptLayout =()=>{
-    const { loadCustomHookData } = useCustomHook();
-    
+    // This was basic learning.
+    // const { loadCustomHookData } = useCustomHook();
+    // useEffect(() => {
+    //     loadCustomHookData();
+    // }, []);
+
+    const { fetchCustomHookData } = useCustomHook();
     useEffect(() => {
-        loadCustomHookData();
+        fetchCustomHookData();
     }, []);
 
     return(

@@ -1,7 +1,8 @@
 import { useContext} from "react";
 import { CustomHookContext } from "./context";
 import { CustomHookState,CustomHookActionEnum } from "./types";
-import { customHookInitialFetch } from "./service";
+// import { customHookInitialFetch } from "./service";
+import { getUsersFromApi } from "./service";
 
 const useCustomHook = () => {
     const context = useContext(CustomHookContext);
@@ -9,12 +10,21 @@ const useCustomHook = () => {
         throw new Error("useCustomHook must be used within a CustomHookProvider");
     }
     const { state, dispatch } = context;
+    // This was basic learning.
+    // const loadCustomHookData = async () => {
+    //     const data = await customHookInitialFetch();
+    //     console.log("Fetched data:", data);
+    //     if (data) setCustomHookState(data);
+    // };
 
-    const loadCustomHookData = async () => {
-        const data = await customHookInitialFetch();
-        console.log("Fetched data:", data);
-        if (data) setCustomHookState(data);
-    };
+    const fetchCustomHookData = async () => {
+        try {
+            const users = await getUsersFromApi();
+            setCustomHookState({ nameAndRole: users });
+        } catch (error) {
+            console.warn("Failed to fetch user:", error);
+        }
+    }
 
     const setCustomHookState=(customHookState:CustomHookState)=>{
         dispatch({ type: CustomHookActionEnum.SET_CUSTOM_HOOK_DATA, payload: customHookState.nameAndRole });
@@ -22,7 +32,9 @@ const useCustomHook = () => {
 
     return {
         state,
-        loadCustomHookData,
+        // This was basic learning.
+        // loadCustomHookData,
+        fetchCustomHookData,
         setCustomHookState
     };
 };
