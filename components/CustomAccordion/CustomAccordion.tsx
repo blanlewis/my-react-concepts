@@ -16,7 +16,12 @@ const CustomAccordion = ({ header, body }: CustomAccordionProps) => {
     <Accordion
       expanded={isExpanded}
       onChange={() => setIsExpanded((prev) => !prev)}
-      sx={{ boxShadow: "none" }}
+      sx={{
+        boxShadow: "0px 1px 3px rgba(10, 13, 18, 0.1)",
+        "&.Mui-expanded": {
+            margin: "0px",
+        },
+      }}
     >
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         {header}

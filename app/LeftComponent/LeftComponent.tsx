@@ -13,7 +13,7 @@ const LeftComponent =() => {
       label: "Overview",
       value: "overview",
       content: (
-        <Box sx={{border: "1px solid blue"}}>
+        <Box sx={{ border: "1px solid green", height: "calc(100vh - 118px)",overflowY:"auto" }}>
           {nameAndRole.map((item, index) => (
             <CustomAccordion
               key={index}

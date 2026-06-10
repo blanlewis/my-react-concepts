@@ -42,8 +42,8 @@ const ReactExtensions = () => {
         <Box sx={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
           <ReflexDragger
             reflexContainerOrientation="vertical"
-            leftpaneComponent={<Box sx={{ width: "100%", height: "100%", border: "1px solid black", display: "flex", alignItems: "center", justifyContent: "center" }}>Left Pane Content</Box>}
-            rightpaneComponent={<Box sx={{ width: "100%", height: "100%", border: "1px solid blue", display: "flex", alignItems: "center", justifyContent: "center" }}>Right Pane Content</Box>}
+            leftpaneComponent={<Box sx={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>Left Pane Content</Box>}
+            rightpaneComponent={<Box sx={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>Right Pane Content</Box>}
             minimumLeftPaneWidth={500}
             minimumRightPaneWidth={500}
             splitterWidth={10}
