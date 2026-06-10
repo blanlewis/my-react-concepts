@@ -5,6 +5,7 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 
 interface TabDataProps {
   readonly label: string;
+  readonly value: string;
   readonly content?: React.ReactNode;
 }
 
@@ -20,18 +21,18 @@ const CustomTabs = ({ tabsData, value, setValue }: CustomTabsProps) => {
   };
 
   return (
-    <Box>
+    <Box sx={{width:"100%", height:"100%"}}>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <TabList onChange={handleChange}>
-            {tabsData.map(({ label }, index) => (
-              <Tab key={label} value={String(index)} label={label} />
+            {tabsData.map(({ label, value: tabValue }) => (
+              <Tab key={tabValue} value={tabValue} label={label} />
             ))}
           </TabList>
         </Box>
 
-        {tabsData.map(({ label, content }, index) => (
-          <TabPanel key={label} value={String(index)} sx={{ padding: 0 }}>
+        {tabsData.map(({ value: tabValue, content }) => (
+          <TabPanel key={tabValue} value={tabValue} sx={{ padding: 0 }}>
             {content}
           </TabPanel>
         ))}

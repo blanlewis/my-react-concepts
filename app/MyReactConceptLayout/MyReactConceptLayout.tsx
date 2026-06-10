@@ -3,6 +3,7 @@ import CommonMiniDrawerLayout from "@/components/CommonMiniDrawerLayout";
 import { Box } from "@mui/material";
 import ReflexDragger from "@/components/ReflexDragger";
 import { useCustomHook } from "@/app/utils/hook";
+import LeftComponent from "@/app/LeftComponent";
 
 const MyReactConceptLayout =()=>{
     // This was basic learning.
@@ -55,7 +56,7 @@ const MyReactConceptLayout =()=>{
                     justifyContent: "center",
                     }}
                 >
-                    Left Pane Content
+                    <LeftComponent />
                 </Box>
                 }
                 rightpaneComponent={
