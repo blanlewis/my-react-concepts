@@ -2,6 +2,7 @@
 import React,{JSX} from "react";
 import { ReflexContainer, ReflexSplitter, ReflexElement } from "react-reflex";
 import DragHandleIcon from "@mui/icons-material/DragHandle";
+import { GlobalStyles } from "@mui/material";
 
 interface ReflexDraggerProps {
   readonly reflexContainerOrientation: "vertical" | "horizontal";
@@ -29,41 +30,50 @@ const ReflexDragger = ({
   };
 
   return (
-    <ReflexContainer
-      style={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-      orientation={reflexContainerOrientation}
-    >
-      <ReflexElement minSize={minimumLeftPaneWidth} flex={initialLeftFlex}>
-        {leftpaneComponent}
-      </ReflexElement>
-      <ReflexSplitter
+    <>
+      <GlobalStyles
+        styles={{
+          ".reflex-element.vertical": {
+            height: "100%",
+          },
+        }}
+      />
+      <ReflexContainer
         style={{
-          width: splitterWidth,
+          width: "100%",
           height: "100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          cursor: "col-resize",
         }}
+        orientation={reflexContainerOrientation}
       >
-        <DragHandleIcon
+        <ReflexElement minSize={minimumLeftPaneWidth} flex={initialLeftFlex}>
+          {leftpaneComponent}
+        </ReflexElement>
+        <ReflexSplitter
           style={{
-            width: splitterWidth + splitterWidth,
-            transform: "rotate(90deg)",
+            width: splitterWidth,
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "col-resize",
           }}
-          onMouseDown={handleSplitterMouseDown}
-        />
-      </ReflexSplitter>
-      <ReflexElement minSize={minimumRightPaneWidth} flex={initialRightFlex}>
-        {rightpaneComponent}
-      </ReflexElement>
-    </ReflexContainer>
+        >
+          <DragHandleIcon
+            style={{
+              width: splitterWidth + splitterWidth,
+              transform: "rotate(90deg)",
+            }}
+            onMouseDown={handleSplitterMouseDown}
+          />
+        </ReflexSplitter>
+        <ReflexElement minSize={minimumRightPaneWidth} flex={initialRightFlex}>
+          {rightpaneComponent}
+        </ReflexElement>
+      </ReflexContainer>
+    </>
   );
 };
 
