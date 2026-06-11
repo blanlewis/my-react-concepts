@@ -20,14 +20,14 @@ const useCustomHook = () => {
     const fetchCustomHookData = async () => {
         try {
             const users = await getUsersFromApi();
-            setCustomHookState({ nameAndRole: users });
+            setCustomHookState({ nameAndRole: users, activeUserByTypeTab: null });
         } catch (error) {
             console.warn("Failed to fetch user:", error);
         }
     }
 
     const setCustomHookState=(customHookState:CustomHookState)=>{
-        dispatch({ type: CustomHookActionEnum.SET_CUSTOM_HOOK_DATA, payload: customHookState.nameAndRole });
+        dispatch({ type: CustomHookActionEnum.SET_CUSTOM_HOOK_DATA, payload: customHookState });
     }
 
     return {

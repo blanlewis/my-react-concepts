@@ -4,14 +4,16 @@ enum CustomHookActionEnum {
 }
 interface CustomHookState {
     nameAndRole:{name:string|null, role:string|null}[],
+    activeUserByTypeTab: UserByTypeEnum|null,
 }
 
 type CustomHookAction =
-    { type: CustomHookActionEnum.SET_CUSTOM_HOOK_DATA; payload: { name: string | null, role: string | null }[] }
+    { type: CustomHookActionEnum.SET_CUSTOM_HOOK_DATA; payload: Partial<CustomHookState> }
     | { type: CustomHookActionEnum.SET_NAME_AND_ROLE; payload: { name: string | null, role: string | null }[] };
 
 const customHookInitialState: CustomHookState = {
     nameAndRole:[],
+    activeUserByTypeTab: null,
 };
 
 enum UserByTypeEnum {
