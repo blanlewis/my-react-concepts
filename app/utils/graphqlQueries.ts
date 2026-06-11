@@ -11,10 +11,10 @@ const getUsersQuery = () => {
     `;
 }
 
-const getUsersByTypeQuery = (type: UserByTypeEnum|null) => {
+const getUsersByTypeQuery = (usersByType: UserByTypeEnum | null) => {
     return `
         query UsersByType {
-            usersByType(type: "${type}") {
+            usersByType(type: ${usersByType}) {
                 name
                 role
             }

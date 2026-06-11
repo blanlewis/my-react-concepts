@@ -35,9 +35,9 @@ const getUsersFromApi = async () => {
     return jsonResult.data.users;
 };
 
-const getUsersByTypeFromApi = async (useByType: UserByTypeEnum|null) => {
+const getUsersByTypeFromApi = async (usersByType: UserByTypeEnum|null) => {
     const usersByTypeRequest = {
-        query: getUsersByTypeQuery(useByType),
+        query: getUsersByTypeQuery(usersByType),
     };
     const result = await fetch("http://localhost:8080/graphql", {
         method: "POST",

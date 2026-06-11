@@ -1,8 +1,8 @@
 import { useContext} from "react";
 import { CustomHookContext } from "./context";
-import { CustomHookState,CustomHookActionEnum } from "./types";
+import { CustomHookState,CustomHookActionEnum} from "./types";
 // import { customHookInitialFetch } from "./service";
-import { getUsersFromApi } from "./service";
+import { getUsersFromApi, getUsersByTypeFromApi } from "./service";
 
 const useCustomHook = () => {
     const context = useContext(CustomHookContext);
@@ -20,6 +20,7 @@ const useCustomHook = () => {
     const fetchCustomHookData = async () => {
         try {
             const users = await getUsersFromApi();
+            const usersByType = await getUsersByTypeFromApi(null);
             setCustomHookState({ nameAndRole: users, activeUserByTypeTab: null });
         } catch (error) {
             console.warn("Failed to fetch user:", error);
