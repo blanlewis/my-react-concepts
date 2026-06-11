@@ -1,4 +1,6 @@
-export function getUsersQuery() {
+import { UserByTypeEnum } from "./types";
+
+const getUsersQuery = () => {
     return `
         query Users {
             users {
@@ -8,3 +10,16 @@ export function getUsersQuery() {
         }
     `;
 }
+
+const getUsersByTypeQuery = (type: UserByTypeEnum|null) => {
+    return `
+        query UsersByType {
+            usersByType(type: "${type}") {
+                name
+                role
+            }
+        }
+    `;
+}
+
+export { getUsersQuery, getUsersByTypeQuery };

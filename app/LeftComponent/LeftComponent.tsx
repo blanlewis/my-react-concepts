@@ -1,37 +1,48 @@
-import {Box} from "@mui/material";
+import { Box } from "@mui/material";
 import CustomTabs from "@/components/CustomTabs";
 import { useState } from "react";
 import { useCustomHook } from "@/app/utils/hook";
 import CustomAccordion from "@/components/CustomAccordion";
 
-const LeftComponent =() => {
-    const { nameAndRole } = useCustomHook();
-    const [value, setValue] = useState("overview");
+enum OverviewTabEnum {
+  OVERVIEW = "overview",
+  SETTINGS = "settings",
+  ACTIVITY = "activity",
+}
 
-    const tabsData = [
-        {
+const LeftComponent = () => {
+  const { nameAndRole } = useCustomHook();
+  const [value, setValue] = useState<string>(OverviewTabEnum.OVERVIEW);
+
+  const tabsData = [
+    {
       label: "Overview",
-      value: "overview",
+      value: OverviewTabEnum.OVERVIEW,
       content: (
-        <Box sx={{ border: "1px solid green", height: "calc(100vh - 118px)",overflowY:"auto" }}>
+        <Box sx={{ height: "calc(100vh - 118px)", overflowY: "auto" }}>
           {nameAndRole.map((item, index) => (
-            <CustomAccordion
-              key={index}
-              header={item.name}
-              body={item.role}
-            />
+            <CustomAccordion key={index} header={item.name} body={item.role} />
           ))}
         </Box>
       ),
     },
-    { label: "Settings", value: "settings", content: <CustomAccordion header="Settings" body="Settings content" /> },
-    { label: "Activity", value: "activity", content: <CustomAccordion header="Activity" body="Activity content" /> },
-    ];
-    return (
-        <Box sx={{display: "flex", alignItems: "center", justifyContent: "center", border:"1px solid pink", width:"100%", height:"100%"}}>
-            <CustomTabs tabsData={tabsData} value={value} setValue={setValue} />
-        </Box>
-    )
-}
+    {
+      label: "Settings",
+      value: OverviewTabEnum.SETTINGS,
+      content: <CustomAccordion header="Settings" body="Settings content" />,
+    },
+    {
+      label: "Activity",
+      value: OverviewTabEnum.ACTIVITY,
+      content: <CustomAccordion header="Activity" body="Activity content" />,
+    },
+  ];
+
+  return (
+    <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "100%" }}>
+      <CustomTabs tabsData={tabsData} value={value} setValue={setValue} />
+    </Box>
+  );
+};
 
 export default LeftComponent;

@@ -14,5 +14,11 @@ const customHookInitialState: CustomHookState = {
     nameAndRole:[],
 };
 
+enum UserByTypeEnum {
+    DEV_EMPLOYEE = "DEV_EMPLOYEE",
+    PRODUCT_TEAM_EMPLOYEE = "PRODUCT_TEAM_EMPLOYEE",
+    TOP_MANAGEMENT= "TOP_MANAGEMENT",
+}
+
 export type { CustomHookState, CustomHookAction };
-export { customHookInitialState, CustomHookActionEnum };
+export { customHookInitialState, CustomHookActionEnum, UserByTypeEnum };

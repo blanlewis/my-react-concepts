@@ -1,4 +1,5 @@
-import { getUsersQuery } from "./graphqlQueries";
+import { UserByTypeEnum } from "./types";
+import { getUsersQuery, getUsersByTypeQuery } from "./graphqlQueries";
 
 // This was basic learning.
 // const customHookInitialFetch = async (): Promise<CustomHookState | null> => {
@@ -20,7 +21,6 @@ const getUsersFromApi = async () => {
     const usersRequest = {
         query: getUsersQuery(),
     };
-
     const result = await fetch("http://localhost:8080/graphql", {
         method: "POST",
         headers: {
@@ -28,14 +28,29 @@ const getUsersFromApi = async () => {
         },
         body: JSON.stringify(usersRequest),
     });
-
     if (!result.ok) {
         throw new Error(`HTTP Error: ${result.status}`);
     }
-
     const jsonResult = await result.json();
-
     return jsonResult.data.users;
 };
 
-export { getUsersFromApi };
+const getUsersByTypeFromApi = async (useByType: UserByTypeEnum|null) => {
+    const usersByTypeRequest = {
+        query: getUsersByTypeQuery(useByType),
+    };
+    const result = await fetch("http://localhost:8080/graphql", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(usersByTypeRequest),
+    });
+    if (!result.ok) {
+        throw new Error(`HTTP Error: ${result.status}`);
+    }
+    const jsonResult = await result.json();
+    return jsonResult.data.usersByType;
+};
+
+export { getUsersFromApi, getUsersByTypeFromApi };
