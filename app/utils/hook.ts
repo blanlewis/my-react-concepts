@@ -21,7 +21,7 @@ const useCustomHook = () => {
         try {
             const users = await getUsersFromApi();
             const usersByType = await getUsersByTypeFromApi(null);
-            setCustomHookState({ nameAndRole: users, activeUserByTypeTab: null });
+            setCustomHookState({ nameAndRole: users, activeUserByTypeTab: null, usersByTypeData: usersByType });
         } catch (error) {
             console.warn("Failed to fetch user:", error);
         }
