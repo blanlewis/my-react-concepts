@@ -18,7 +18,7 @@ const RightComponent = () => {
   };
 
   const userList = (
-    <Box sx={{ height:"100%", maxHeight: "calc(100vh - 118px)", overflowY: "auto" }}>
+    <Box sx={{ height:"calc(100vh - 118px)", maxHeight: "calc(100vh - 118px)", overflowY: "auto" }}>
       {isLoading ? (
         <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
           <CustomSpinnerLoader />
