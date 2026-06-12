@@ -33,14 +33,6 @@ const CustomTabs = ({
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <TabList
             onChange={handleChange}
-            sx={{
-              "& .MuiTabs-indicator": {
-                transition: "none",
-              },
-              "& .MuiTab-root": {
-                transition: "none",
-              },
-            }}
           >
             {tabsData.map(({ label, value: tabValue }) => (
               <Tab
@@ -49,9 +41,6 @@ const CustomTabs = ({
                 label={label}
                 disableRipple
                 disableFocusRipple
-                sx={{
-                  transition: "none",
-                }}
               />
             ))}
           </TabList>
