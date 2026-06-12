@@ -18,6 +18,7 @@ interface ReflexDraggerProps {
   readonly splitterWidth: number;
   readonly initialLeftFlex: number;
   readonly initialRightFlex: number;
+  readonly isDraggerIconRequired: boolean;
 }
 
 const ReflexDragger = ({
@@ -29,6 +30,7 @@ const ReflexDragger = ({
   splitterWidth,
   initialLeftFlex,
   initialRightFlex,
+  isDraggerIconRequired,
 }: ReflexDraggerProps): JSX.Element => {
   const handleSplitterMouseDown = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -77,20 +79,22 @@ const ReflexDragger = ({
           className="custom-reflex-splitter"
           style={{
             width: splitterWidth,
-            height: "100vh",
+            height: "calc(100vh - 66px)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             cursor: "col-resize",
           }}
         >
-          <DragHandleIcon
-            style={{
-              width: splitterWidth + splitterWidth,
-              transform: "rotate(90deg)",
-            }}
-            onMouseDown={handleSplitterMouseDown}
-          />
+          {isDraggerIconRequired && (
+            <DragHandleIcon
+              style={{
+                width: splitterWidth + splitterWidth,
+                transform: "rotate(90deg)",
+              }}
+              onMouseDown={handleSplitterMouseDown}
+            />
+          )}
         </ReflexSplitter>
 
         <ReflexElement

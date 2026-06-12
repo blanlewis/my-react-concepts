@@ -24,15 +24,8 @@ const MyReactConceptLayout = () => {
       appHeaderTitle="Learning Next JS"
       firstListItems={[
         { label: "Next JS Basics", route: "/nextJsBasics" },
-        { label: "React Hooks", route: "/reactHooks" },
-        { label: "Context", route: "/context" },
-        { label: "MUI Components", route: "/muiComponents" },
       ]}
-      secondaryListItems={[
-        { label: "Browser dev tools", route: "/browserDevTools" },
-        { label: "React extensions", route: "/reactExtensions" },
-        { label: "Hacks", route: "/hacks" },
-      ]}
+      secondaryListItems={[]}
       appBody={
         <Box
           sx={{
@@ -76,6 +69,7 @@ const MyReactConceptLayout = () => {
             splitterWidth={10}
             initialLeftFlex={0.5}
             initialRightFlex={0.5}
+            isDraggerIconRequired={false}
           />
         </Box>
       }
