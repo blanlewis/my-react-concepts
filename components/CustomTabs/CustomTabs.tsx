@@ -15,24 +15,54 @@ interface CustomTabsProps {
   readonly setValue: (value: string) => void;
 }
 
-const CustomTabs = ({ tabsData, value, setValue }: CustomTabsProps) => {
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+const CustomTabs = ({
+  tabsData,
+  value,
+  setValue,
+}: CustomTabsProps) => {
+  const handleChange = (
+    event: React.SyntheticEvent,
+    newValue: string
+  ) => {
     setValue(newValue);
   };
 
   return (
-    <Box sx={{width:"100%", height:"100%"}}>
+    <Box sx={{ width: "100%", height: "100%" }}>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <TabList onChange={handleChange}>
+          <TabList
+            onChange={handleChange}
+            sx={{
+              "& .MuiTabs-indicator": {
+                transition: "none",
+              },
+              "& .MuiTab-root": {
+                transition: "none",
+              },
+            }}
+          >
             {tabsData.map(({ label, value: tabValue }) => (
-              <Tab key={tabValue} value={tabValue} label={label} />
+              <Tab
+                key={tabValue}
+                value={tabValue}
+                label={label}
+                disableRipple
+                disableFocusRipple
+                sx={{
+                  transition: "none",
+                }}
+              />
             ))}
           </TabList>
         </Box>
 
         {tabsData.map(({ value: tabValue, content }) => (
-          <TabPanel key={tabValue} value={tabValue} sx={{ padding: 0 }}>
+          <TabPanel
+            key={tabValue}
+            value={tabValue}
+            sx={{ padding: 0 }}
+          >
             {content}
           </TabPanel>
         ))}
