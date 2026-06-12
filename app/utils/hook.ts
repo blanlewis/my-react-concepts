@@ -1,6 +1,6 @@
 import { useContext} from "react";
 import { CustomHookContext } from "./context";
-import { CustomHookState,CustomHookActionEnum} from "./types";
+import { CustomHookState,CustomHookActionEnum, UserByTypeEnum} from "./types";
 // import { customHookInitialFetch } from "./service";
 import { getUsersFromApi, getUsersByTypeFromApi } from "./service";
 
@@ -27,8 +27,12 @@ const useCustomHook = () => {
         }
     }
 
-    const setCustomHookState=(customHookState:CustomHookState)=>{
+    const setCustomHookState=(customHookState:Partial<CustomHookState>)=>{
         dispatch({ type: CustomHookActionEnum.SET_CUSTOM_HOOK_DATA, payload: customHookState });
+    }
+
+    const setActiveUserByTypeTab =  (selectedUserByTypeTab: UserByTypeEnum | null) => {
+        setCustomHookState({ activeUserByTypeTab: selectedUserByTypeTab });
     }
 
     return {
@@ -36,7 +40,8 @@ const useCustomHook = () => {
         // This was basic learning.
         // loadCustomHookData,
         fetchCustomHookData,
-        setCustomHookState
+        setCustomHookState,
+        setActiveUserByTypeTab,
     };
 };
 

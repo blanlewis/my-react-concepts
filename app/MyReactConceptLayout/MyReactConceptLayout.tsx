@@ -4,6 +4,7 @@ import { Box } from "@mui/material";
 import ReflexDragger from "@/components/ReflexDragger";
 import { useCustomHook } from "@/app/utils/hook";
 import LeftComponent from "@/app/LeftComponent";
+import RightComponent from "@/app/RightComponent";
 
 const MyReactConceptLayout = () => {
   const { fetchCustomHookData } = useCustomHook();
@@ -67,7 +68,7 @@ const MyReactConceptLayout = () => {
                   justifyContent: "center",
                 }}
               >
-                Right Pane Content
+                <RightComponent />
               </Box>
             }
             minimumLeftPaneWidth={500}
