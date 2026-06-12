@@ -18,15 +18,15 @@ const RightComponent = () => {
   };
 
   const userList = (
-    <Box sx={{ maxHeight: "calc(100vh - 118px)", overflowY: "auto" }}>
+    <Box sx={{ height:"100%", maxHeight: "calc(100vh - 118px)", overflowY: "auto" }}>
       {isLoading ? (
         <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
           <CustomSpinnerLoader />
         </Box>
       ) : (
-      usersByTypeData.map((item, index) => (
-        <CustomAccordion key={index} header={item.name} body={item.role} />
-      ))
+        usersByTypeData.map((item, index) => (
+          <CustomAccordion key={index} header={item.name} body={item.role} />
+        ))
       )}
     </Box>
   );
