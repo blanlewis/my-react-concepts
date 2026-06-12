@@ -6,6 +6,7 @@ interface CustomHookState {
     nameAndRole: UserType[],
     activeUserByTypeTab: UserByTypeEnum|null,
     usersByTypeData: UserType[],
+    isLoading: boolean,
 }
 
 type CustomHookAction =
@@ -16,6 +17,7 @@ const customHookInitialState: CustomHookState = {
     nameAndRole:[],
     activeUserByTypeTab: null,
     usersByTypeData: [],
+    isLoading: false,
 };
 
 interface UserType {

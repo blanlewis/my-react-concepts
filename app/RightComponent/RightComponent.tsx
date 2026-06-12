@@ -4,11 +4,12 @@ import { useState } from "react";
 import { useCustomHook } from "@/app/utils/hook";
 import CustomAccordion from "@/components/CustomAccordion";
 import { UserByTypeEnum } from "@/app/utils/types";
+import CustomSpinnerLoader from "@/components/CustomSpinnerLoader";
 
 const ALL_TAB_VALUE = "ALL";
 
 const RightComponent = () => {
-  const { usersByTypeData, setActiveUserByTypeTab } = useCustomHook();
+  const { usersByTypeData, isLoading, setActiveUserByTypeTab } = useCustomHook();
   const [value, setValue] = useState<string>(ALL_TAB_VALUE);
 
   const handleTabChange = (newValue: string) => {
@@ -17,10 +18,16 @@ const RightComponent = () => {
   };
 
   const userList = (
-    <Box sx={{ height: "calc(100vh - 118px)", overflowY: "auto" }}>
-      {usersByTypeData.map((item, index) => (
+    <Box sx={{ maxHeight: "calc(100vh - 118px)", overflowY: "auto" }}>
+      {isLoading ? (
+        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
+          <CustomSpinnerLoader />
+        </Box>
+      ) : (
+      usersByTypeData.map((item, index) => (
         <CustomAccordion key={index} header={item.name} body={item.role} />
-      ))}
+      ))
+      )}
     </Box>
   );
 

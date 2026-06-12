@@ -31,8 +31,14 @@ const useCustomHook = () => {
         dispatch({ type: CustomHookActionEnum.SET_CUSTOM_HOOK_DATA, payload: customHookState });
     }
 
-    const setActiveUserByTypeTab =  (selectedUserByTypeTab: UserByTypeEnum | null) => {
-        setCustomHookState({ activeUserByTypeTab: selectedUserByTypeTab });
+    const setActiveUserByTypeTab = async (selectedUserByTypeTab: UserByTypeEnum | null) => {
+        setCustomHookState({ activeUserByTypeTab: selectedUserByTypeTab, isLoading: true });
+        const usersByType = await getUsersByTypeFromApi(selectedUserByTypeTab);
+        setCustomHookState({ usersByTypeData: usersByType, isLoading: false });
+    }
+
+    const setIsLoading = (isLoading: boolean) => {
+        setCustomHookState({ isLoading });
     }
 
     return {
@@ -42,6 +48,7 @@ const useCustomHook = () => {
         fetchCustomHookData,
         setCustomHookState,
         setActiveUserByTypeTab,
+        setIsLoading,
     };
 };
 
