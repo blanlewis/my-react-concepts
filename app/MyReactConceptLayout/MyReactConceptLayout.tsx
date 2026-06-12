@@ -3,8 +3,8 @@ import CommonMiniDrawerLayout from "@/components/CommonMiniDrawerLayout";
 import { Box } from "@mui/material";
 import ReflexDragger from "@/components/ReflexDragger";
 import { useCustomHook } from "@/app/utils/hook";
-import LeftComponent from "@/app/LeftComponent";
-import RightComponent from "@/app/RightComponent";
+import LeftComponent from "@/components/LeftComponent";
+import RightComponent from "@/components/RightComponent";
 
 const MyReactConceptLayout = () => {
   const { fetchCustomHookData } = useCustomHook();
