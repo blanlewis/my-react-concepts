@@ -79,7 +79,7 @@ const ReflexDragger = ({
           className="custom-reflex-splitter"
           style={{
             width: splitterWidth,
-            height: "calc(100vh - 66px)",
+            height: "calc(100vh - 50px)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
