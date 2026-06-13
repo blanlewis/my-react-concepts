@@ -20,6 +20,7 @@ const CustomAccordion = ({ header, body }: CustomAccordionProps) => {
         boxShadow: "0px 1px 3px rgba(10, 13, 18, 0.1)",
         "&.Mui-expanded": {
             margin: "0px",
+            border:"1px solid blue"
         },
       }}
     >

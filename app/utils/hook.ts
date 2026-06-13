@@ -1,8 +1,8 @@
 import { useContext} from "react";
 import { CustomHookContext } from "./context";
-import { CustomHookState,CustomHookActionEnum } from "./types";
+import { CustomHookState,CustomHookActionEnum, UserByTypeEnum} from "./types";
 // import { customHookInitialFetch } from "./service";
-import { getUsersFromApi } from "./service";
+import { getUsersFromApi, getUsersByTypeFromApi } from "./service";
 
 const useCustomHook = () => {
     const context = useContext(CustomHookContext);
@@ -20,14 +20,25 @@ const useCustomHook = () => {
     const fetchCustomHookData = async () => {
         try {
             const users = await getUsersFromApi();
-            setCustomHookState({ nameAndRole: users });
+            const usersByType = await getUsersByTypeFromApi(null);
+            setCustomHookState({ nameAndRole: users, activeUserByTypeTab: null, usersByTypeData: usersByType });
         } catch (error) {
             console.warn("Failed to fetch user:", error);
         }
     }
 
-    const setCustomHookState=(customHookState:CustomHookState)=>{
-        dispatch({ type: CustomHookActionEnum.SET_CUSTOM_HOOK_DATA, payload: customHookState.nameAndRole });
+    const setCustomHookState=(customHookState:Partial<CustomHookState>)=>{
+        dispatch({ type: CustomHookActionEnum.SET_CUSTOM_HOOK_DATA, payload: customHookState });
+    }
+
+    const setActiveUserByTypeTab = async (selectedUserByTypeTab: UserByTypeEnum | null) => {
+        setCustomHookState({ activeUserByTypeTab: selectedUserByTypeTab, isLoading: true });
+        const usersByType = await getUsersByTypeFromApi(selectedUserByTypeTab);
+        setCustomHookState({ usersByTypeData: usersByType, isLoading: false });
+    }
+
+    const setIsLoading = (isLoading: boolean) => {
+        setCustomHookState({ isLoading });
     }
 
     return {
@@ -35,7 +46,9 @@ const useCustomHook = () => {
         // This was basic learning.
         // loadCustomHookData,
         fetchCustomHookData,
-        setCustomHookState
+        setCustomHookState,
+        setActiveUserByTypeTab,
+        setIsLoading,
     };
 };
 

@@ -1,18 +1,17 @@
 "use client";
 
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-import Image from "next/image";
+import { Box, ToggleButton, ToggleButtonGroup } from "@mui/material";
 
 interface ToggleDataProps {
   readonly label: string;
-  readonly icon: string;
+  readonly icon: React.ReactNode;
   readonly value: string;
 }
 
 interface CustomToggleButtonProps {
   readonly toggleData: ToggleDataProps[];
-  readonly selectedToggle: string;
-  readonly setSelectedToggle: (value: string) => void;
+  readonly selectedToggle: string | null;
+  readonly setSelectedToggle: (value: string | null) => void;
 }
 
 const CustomToggleButton = ({
@@ -22,11 +21,9 @@ const CustomToggleButton = ({
 }: CustomToggleButtonProps) => {
   const handleChange = (
     event: React.MouseEvent<HTMLElement>,
-    selected: string
+    selected: string | null
   ) => {
-    if (selected != null) {
-      setSelectedToggle(selected);
-    }
+    setSelectedToggle(selected);
   };
 
   return (
@@ -59,12 +56,22 @@ const CustomToggleButton = ({
           disableRipple
           sx={{
             minWidth: 44,
-            "&:hover, &.Mui-selected, &.Mui-selected:hover": {
+            "&:hover": {
               backgroundColor: "transparent",
             },
           }}
         >
-          <Image src={icon} alt={`${label} Icon`} width={20} height={20} />
+          <Box
+            sx={{
+              width: 20,
+              height: 20,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {icon}
+          </Box>
         </ToggleButton>
       ))}
     </ToggleButtonGroup>

@@ -3,7 +3,8 @@ import CommonMiniDrawerLayout from "@/components/CommonMiniDrawerLayout";
 import { Box } from "@mui/material";
 import ReflexDragger from "@/components/ReflexDragger";
 import { useCustomHook } from "@/app/utils/hook";
-import LeftComponent from "@/app/LeftComponent";
+import LeftComponent from "@/components/LeftComponent";
+import RightComponent from "@/components/RightComponent";
 
 const MyReactConceptLayout = () => {
   const { fetchCustomHookData } = useCustomHook();
@@ -23,15 +24,8 @@ const MyReactConceptLayout = () => {
       appHeaderTitle="Learning Next JS"
       firstListItems={[
         { label: "Next JS Basics", route: "/nextJsBasics" },
-        { label: "React Hooks", route: "/reactHooks" },
-        { label: "Context", route: "/context" },
-        { label: "MUI Components", route: "/muiComponents" },
       ]}
-      secondaryListItems={[
-        { label: "Browser dev tools", route: "/browserDevTools" },
-        { label: "React extensions", route: "/reactExtensions" },
-        { label: "Hacks", route: "/hacks" },
-      ]}
+      secondaryListItems={[]}
       appBody={
         <Box
           sx={{
@@ -42,7 +36,7 @@ const MyReactConceptLayout = () => {
             justifyContent: "center",
           }}
         >
-          <ReflexDragger
+          {/* <ReflexDragger
             reflexContainerOrientation="vertical"
             leftpaneComponent={
               <Box
@@ -67,7 +61,7 @@ const MyReactConceptLayout = () => {
                   justifyContent: "center",
                 }}
               >
-                Right Pane Content
+                <RightComponent />
               </Box>
             }
             minimumLeftPaneWidth={500}
@@ -75,7 +69,8 @@ const MyReactConceptLayout = () => {
             splitterWidth={10}
             initialLeftFlex={0.5}
             initialRightFlex={0.5}
-          />
+            isDraggerIconRequired={false}
+          /> */}
         </Box>
       }
     />
