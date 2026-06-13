@@ -133,7 +133,7 @@ interface NavListProps {
 }
 
 const NavList = ({ items, open }: NavListProps) => (
-  <List>
+  <List sx={{p:0}}>
     {items.map(({ label, route }, index) => (
       <ListItem key={label} disablePadding sx={{ display: "block" }}>
         <ListItemButton
