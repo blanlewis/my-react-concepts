@@ -170,7 +170,7 @@ interface AppTopBarProps {
 }
 
 const AppTopBar = ({ title, open, onOpen }: AppTopBarProps) => (
-  <StyledAppBar position="fixed" open={open} sx={{ border: "1px solid black" }}>
+  <StyledAppBar position="fixed" open={open}>
     <Toolbar
       sx={{
         "@media (min-width:0px)": {
@@ -233,7 +233,6 @@ const AppBody = ({ children, drawerOpen }: AppBodyProps) => (
     component="main"
     sx={{
       mt: `${TOOLBAR_HEIGHT}px`,
-      border: "1px solid blue",
       width: `calc(100% - ${drawerOpen ? DRAWER_WIDTH : DRAWER_COLLAPSED_WIDTH}px)`,
       height: `calc(100vh - ${TOOLBAR_HEIGHT}px)`,
       maxHeight: `calc(100vh - ${TOOLBAR_HEIGHT}px)`,
