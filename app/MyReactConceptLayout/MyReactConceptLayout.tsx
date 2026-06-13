@@ -55,7 +55,7 @@ const MyReactConceptLayout = () => {
                   height: "100%",
                 }}
               >
-                {/* <RightComponent /> */}
+                <RightComponent />
               </Box>
             }
             minimumLeftPaneWidth={500}

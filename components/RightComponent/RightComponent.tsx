@@ -19,7 +19,7 @@ const RightComponent = () => {
   };
 
   const userList = (
-    <Box sx={{ height:"calc(100vh - 118px)", maxHeight: "calc(100vh - 118px)", overflowY: "auto" }}>
+    <Box sx={{ height:"calc(100% - 48px)", maxHeight: "calc(100% - 48px)", overflowY: "auto" }}>
       {isLoading ? (
         <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
           <CustomSpinnerLoader />
@@ -40,7 +40,7 @@ const RightComponent = () => {
   ];
 
   return (
-    <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "100%", position:"relative" }}>
+    <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "100%", position:"relative",overflow:"hidden" }}>
       <Box sx={{ position: "absolute", top: "3px", right: "3px", zIndex: 1 }}>
         <RightComponentToggle />
       </Box>

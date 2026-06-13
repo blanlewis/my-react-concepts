@@ -19,7 +19,7 @@ const LeftComponent = () => {
       label: "Overview",
       value: OverviewTabEnum.OVERVIEW,
       content: (
-        <Box sx={{border:"1px solid pink"}}>
+        <Box sx={{ height: "calc(100% - 50px)", maxHeight: "calc(100% - 50px)", overflowY: "auto" }}>
           {nameAndRole.map((item, index) => (
             <CustomAccordion key={index} header={item.name} body={item.role} />
           ))}
@@ -39,7 +39,7 @@ const LeftComponent = () => {
   ];
 
   return (
-    <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", position: "relative" }}>
+    <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "100%", position: "relative",overflow:"hidden" }}>
       <CustomTabs tabsData={tabsData} value={value} setValue={setValue} />
     </Box>
   );
