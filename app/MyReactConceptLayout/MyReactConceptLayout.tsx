@@ -36,7 +36,7 @@ const MyReactConceptLayout = () => {
             justifyContent: "center",
           }}
         >
-          {/* <ReflexDragger
+          <ReflexDragger
             reflexContainerOrientation="vertical"
             leftpaneComponent={
               <Box
@@ -70,7 +70,7 @@ const MyReactConceptLayout = () => {
             initialLeftFlex={0.5}
             initialRightFlex={0.5}
             isDraggerIconRequired={false}
-          /> */}
+          />
         </Box>
       }
     />

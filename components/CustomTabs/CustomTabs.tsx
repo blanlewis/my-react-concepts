@@ -28,9 +28,9 @@ const CustomTabs = ({
   };
 
   return (
-    <Box sx={{ width: "100%", height: "100%" }}>
+    <Box sx={{ width: "100%", height: "100%", display: "flex", flexDirection: "column" }}>
       <TabContext value={value}>
-        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+        <Box sx={{ borderBottom: 1, borderColor: "divider", flexShrink: 0 }}>
           <TabList
             onChange={handleChange}
           >
@@ -50,7 +50,7 @@ const CustomTabs = ({
           <TabPanel
             key={tabValue}
             value={tabValue}
-            sx={{ padding: 0, height: "100%" }}
+            sx={{ padding: 0, flex: 1, minHeight: 0, height: "100%", maxHeight: "100%", display: "flex", flexDirection: "column" }}
           >
             {content}
           </TabPanel>
