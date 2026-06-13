@@ -6,7 +6,9 @@ import CustomAccordion from "@/components/CustomAccordion";
 import { UserByTypeEnum,RightComponentToggleOptionsEnum } from "@/app/utils/types";
 import CustomSpinnerLoader from "@/components/CustomSpinnerLoader";
 import RightComponentToggle from "@/components/RightComponentToggle";
-import MapComponent from "@/components/MapComponent";
+import dynamic from "next/dynamic";
+
+const MapComponent = dynamic(() => import("@/components/MapComponent"), { ssr: false });
 
 const ALL_TAB_VALUE = "ALL";
 
@@ -42,7 +44,7 @@ const RightComponent = () => {
 
   return (
     <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "100%", position:"relative",overflow:"hidden" }}>
-      <Box sx={{ position: "absolute", top: "3px", right: "3px", zIndex: 1 }}>
+      <Box sx={{ position: "absolute", top: "3px", right: "3px", zIndex: 401 }}>
         <RightComponentToggle />
       </Box>
       {activeRightPanelToggle === RightComponentToggleOptionsEnum.MAP ? (
