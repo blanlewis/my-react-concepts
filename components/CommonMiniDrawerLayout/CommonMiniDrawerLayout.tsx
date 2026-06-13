@@ -68,9 +68,6 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
   padding: theme.spacing(0, 1),
   ...theme.mixins.toolbar,
-  "@media (min-width:0px)": {
-    minHeight: `${TOOLBAR_HEIGHT}px`,
-  },
   "@media (min-width: 600px)": {
     minHeight: `${TOOLBAR_HEIGHT}px`,
   },
