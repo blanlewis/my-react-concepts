@@ -3,6 +3,7 @@ import CustomTabs from "@/components/CustomTabs";
 import { useState } from "react";
 import { useCustomHook } from "@/app/utils/hook";
 import CustomAccordion from "@/components/CustomAccordion";
+import RightComponentToggle from "@/components/RightComponentToggle";
 
 enum OverviewTabEnum {
   OVERVIEW = "overview",
@@ -39,7 +40,7 @@ const LeftComponent = () => {
   ];
 
   return (
-    <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "100%" }}>
+    <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "calc(100vh - 66px)", maxHeight: "calc(100vh - 66px)", position: "relative" }}>
       <CustomTabs tabsData={tabsData} value={value} setValue={setValue} />
     </Box>
   );
