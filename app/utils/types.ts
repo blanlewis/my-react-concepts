@@ -7,6 +7,7 @@ interface CustomHookState {
     activeUserByTypeTab: UserByTypeEnum|null,
     usersByTypeData: UserType[],
     isLoading: boolean,
+    activeRightPanelToggle: RightComponentToggleOptionsEnum|null,
 }
 
 type CustomHookAction =
@@ -18,6 +19,7 @@ const customHookInitialState: CustomHookState = {
     activeUserByTypeTab: null,
     usersByTypeData: [],
     isLoading: false,
+    activeRightPanelToggle: null,
 };
 
 interface UserType {
@@ -31,5 +33,10 @@ enum UserByTypeEnum {
     TOP_MANAGEMENT= "TOP_MANAGEMENT",
 }
 
+enum RightComponentToggleOptionsEnum {
+    MAP = "Map",
+    GRID = "Grid",
+}
+
 export type { CustomHookState, CustomHookAction, UserType };
-export { customHookInitialState, CustomHookActionEnum, UserByTypeEnum };
+export { customHookInitialState, CustomHookActionEnum, UserByTypeEnum, RightComponentToggleOptionsEnum };

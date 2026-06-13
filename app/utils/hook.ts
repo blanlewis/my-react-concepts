@@ -1,6 +1,6 @@
 import { useContext} from "react";
 import { CustomHookContext } from "./context";
-import { CustomHookState,CustomHookActionEnum, UserByTypeEnum} from "./types";
+import { CustomHookState,CustomHookActionEnum, UserByTypeEnum,RightComponentToggleOptionsEnum} from "./types";
 // import { customHookInitialFetch } from "./service";
 import { getUsersFromApi, getUsersByTypeFromApi } from "./service";
 
@@ -41,6 +41,10 @@ const useCustomHook = () => {
         setCustomHookState({ isLoading });
     }
 
+    const setActiveRightPanelToggle = (activeRightPanelToggle: RightComponentToggleOptionsEnum | null) => {
+        setCustomHookState({ activeRightPanelToggle });
+    }
+
     return {
         ...state,
         // This was basic learning.
@@ -49,6 +53,7 @@ const useCustomHook = () => {
         setCustomHookState,
         setActiveUserByTypeTab,
         setIsLoading,
+        setActiveRightPanelToggle,
     };
 };
 

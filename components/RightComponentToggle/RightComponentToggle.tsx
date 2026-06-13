@@ -1,16 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import CustomToggleButton from "@/components/CustomToggleButton";
 import {Layers as LayersIcon, ViewComfy as ViewComfyIcon} from '@mui/icons-material';
+import { useCustomHook } from "@/app/utils/hook";
+import { RightComponentToggleOptionsEnum } from "@/app/utils/types";
 
 const RightComponentToggle = () => {
-  const [selectedToggle, setSelectedToggle] = useState<string | null>(null);
-
-  enum RightComponentToggleOptionsEnum {
-    MAP = "Map",
-    GRID = "Grid",
-  }
+  const { activeRightPanelToggle, setActiveRightPanelToggle } = useCustomHook();
 
   const toggleData = [
     {
@@ -28,8 +24,8 @@ const RightComponentToggle = () => {
   return (
     <CustomToggleButton
       toggleData={toggleData}
-      selectedToggle={selectedToggle}
-      setSelectedToggle={setSelectedToggle}
+      selectedToggle={activeRightPanelToggle}
+      setSelectedToggle={setActiveRightPanelToggle as (value: string | null) => void}
     />
   );
 };

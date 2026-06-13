@@ -3,14 +3,15 @@ import CustomTabs from "@/components/CustomTabs";
 import { useState } from "react";
 import { useCustomHook } from "@/app/utils/hook";
 import CustomAccordion from "@/components/CustomAccordion";
-import { UserByTypeEnum } from "@/app/utils/types";
+import { UserByTypeEnum,RightComponentToggleOptionsEnum } from "@/app/utils/types";
 import CustomSpinnerLoader from "@/components/CustomSpinnerLoader";
 import RightComponentToggle from "@/components/RightComponentToggle";
+import MapComponent from "@/components/MapComponent";
 
 const ALL_TAB_VALUE = "ALL";
 
 const RightComponent = () => {
-  const { usersByTypeData, isLoading, setActiveUserByTypeTab } = useCustomHook();
+  const { usersByTypeData, isLoading, activeRightPanelToggle, setActiveUserByTypeTab } = useCustomHook();
   const [value, setValue] = useState<string>(ALL_TAB_VALUE);
 
   const handleTabChange = (newValue: string) => {
@@ -44,7 +45,11 @@ const RightComponent = () => {
       <Box sx={{ position: "absolute", top: "3px", right: "3px", zIndex: 1 }}>
         <RightComponentToggle />
       </Box>
-      <CustomTabs tabsData={tabsData} value={value} setValue={handleTabChange} />
+      {activeRightPanelToggle === RightComponentToggleOptionsEnum.MAP ? (
+        <MapComponent />
+      ) : (
+        <CustomTabs tabsData={tabsData} value={value} setValue={handleTabChange} />
+      )}
     </Box>
   );
 };
