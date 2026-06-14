@@ -71,7 +71,7 @@ const ReflexDragger = ({
             reflexContainerOrientation === "vertical"
               ? {
                   width: splitterWidth,
-                  height: "calc(100vh - 50px)",
+                  height: "100%",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
