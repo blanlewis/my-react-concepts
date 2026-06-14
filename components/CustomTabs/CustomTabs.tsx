@@ -50,7 +50,7 @@ const CustomTabs = ({
           <TabPanel
             key={tabValue}
             value={tabValue}
-            sx={{ padding: 0, height: "100%", border:"1px solid yellow" }}
+            sx={{ padding: 0, height: "100%" }}
           >
             {content}
           </TabPanel>
