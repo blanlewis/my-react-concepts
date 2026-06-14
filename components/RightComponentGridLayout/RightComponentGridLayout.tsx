@@ -26,8 +26,8 @@ const RightComponentGridLayout = () => {
                 reflexContainerOrientation="horizontal"
                 leftpaneComponent={<RightComponentGridLayoutTopPane/>}
                 rightpaneComponent={<RightComponentGridLayoutBottomPane/>}
-                minimumLeftPaneWidth={500}
-                minimumRightPaneWidth={500}
+                minimumLeftPaneWidth={80}
+                minimumRightPaneWidth={80}
                 splitterWidth={8}
                 initialLeftFlex={0.5}
                 initialRightFlex={0.5}
