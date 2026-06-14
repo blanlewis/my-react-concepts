@@ -7,6 +7,7 @@ import { UserByTypeEnum,RightComponentToggleOptionsEnum } from "@/app/utils/type
 import CustomSpinnerLoader from "@/components/CustomSpinnerLoader";
 import RightComponentToggle from "@/components/RightComponentToggle";
 import dynamic from "next/dynamic";
+import RightComponentGridLayout from "@/components/RightComponentGridLayout";
 
 const MapComponent = dynamic(() => import("@/components/MapComponent"), { ssr: false });
 
@@ -49,6 +50,8 @@ const RightComponent = () => {
       </Box>
       {activeRightPanelToggle === RightComponentToggleOptionsEnum.MAP ? (
         <MapComponent />
+      ) : activeRightPanelToggle === RightComponentToggleOptionsEnum.GRID ? (
+        <RightComponentGridLayout />
       ) : (
         <CustomTabs tabsData={tabsData} value={value} setValue={handleTabChange} />
       )}
