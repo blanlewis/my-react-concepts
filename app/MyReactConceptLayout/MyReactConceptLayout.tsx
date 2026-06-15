@@ -36,16 +36,13 @@ const MyReactConceptLayout = () => {
             justifyContent: "center",
           }}
         >
-          {/* <ReflexDragger
+          <ReflexDragger
             reflexContainerOrientation="vertical"
             leftpaneComponent={
               <Box
                 sx={{
                   width: "100%",
                   height: "100%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
                 }}
               >
                 <LeftComponent />
@@ -56,9 +53,6 @@ const MyReactConceptLayout = () => {
                 sx={{
                   width: "100%",
                   height: "100%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
                 }}
               >
                 <RightComponent />
@@ -70,7 +64,7 @@ const MyReactConceptLayout = () => {
             initialLeftFlex={0.5}
             initialRightFlex={0.5}
             isDraggerIconRequired={false}
-          /> */}
+          />
         </Box>
       }
     />

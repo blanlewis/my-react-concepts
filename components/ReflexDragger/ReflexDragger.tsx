@@ -32,10 +32,6 @@ const ReflexDragger = ({
   initialRightFlex,
   isDraggerIconRequired,
 }: ReflexDraggerProps): JSX.Element => {
-  const handleSplitterMouseDown = (e: React.MouseEvent) => {
-    e.preventDefault();
-  };
-
   return (
     <>
       <GlobalStyles
@@ -59,13 +55,7 @@ const ReflexDragger = ({
       />
 
       <ReflexContainer
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
+        style={{ width: "100%", height: "100%" }}
         orientation={reflexContainerOrientation}
       >
         <ReflexElement
@@ -77,22 +67,32 @@ const ReflexDragger = ({
 
         <ReflexSplitter
           className="custom-reflex-splitter"
-          style={{
-            width: splitterWidth,
-            height: "calc(100vh - 66px)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            cursor: "col-resize",
-          }}
+          style={
+            reflexContainerOrientation === "vertical"
+              ? {
+                  width: splitterWidth,
+                  height: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "col-resize",
+                }
+              : {
+                  width: "100%",
+                  height: splitterWidth,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "row-resize",
+                }
+          }
         >
           {isDraggerIconRequired && (
             <DragHandleIcon
               style={{
                 width: splitterWidth + splitterWidth,
-                transform: "rotate(90deg)",
+                transform: reflexContainerOrientation === "vertical" ? "rotate(90deg)" : "none",
               }}
-              onMouseDown={handleSplitterMouseDown}
             />
           )}
         </ReflexSplitter>
