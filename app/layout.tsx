@@ -1,6 +1,8 @@
 import "react-reflex/styles.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { CustomHookProvider } from "@/app/utils/context";
+import AppWrapper from "@/app/AppWrapper/AppWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,7 +30,11 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col" suppressHydrationWarning>{children}</body>
+        <body className="min-h-full flex flex-col" suppressHydrationWarning>
+          <CustomHookProvider>
+            <AppWrapper>{children}</AppWrapper>
+          </CustomHookProvider>
+        </body>
     </html>
   );
 }

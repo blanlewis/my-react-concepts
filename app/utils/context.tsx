@@ -1,3 +1,4 @@
+"use client";
 import { createContext, useReducer, ReactNode, Dispatch } from "react";
 import { CustomHookState, CustomHookAction } from "./types";
 import { customHookInitialState } from "./types";
