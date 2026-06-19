@@ -2,7 +2,12 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
-import CommonMiniDrawerLayout from "@/components/CommonMiniDrawerLayout";
+import dynamic from "next/dynamic";
+
+const CommonMiniDrawerLayout = dynamic(
+  () => import("@/components/CommonMiniDrawerLayout"),
+  { ssr: false }
+);
 import { useCustomHook } from "@/app/utils/hook";
 
 const AppWrapper = ({ children }: { children: React.ReactNode }) => {
