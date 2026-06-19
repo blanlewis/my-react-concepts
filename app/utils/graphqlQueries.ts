@@ -22,4 +22,24 @@ const getUsersByTypeQuery = (usersByType: UserByTypeEnum | null) => {
     `;
 }
 
-export { getUsersQuery, getUsersByTypeQuery };
+const getNextJsBasicUsersQuery = (
+    page: number,
+    size: number
+) => {
+    return `
+        query NextJsBasicUsers {
+            nextJsBasicUsers(
+                page: ${page}
+                size: ${size}
+            ) {
+                hasMore
+                users {
+                    name
+                    role
+                }
+            }
+        }
+    `;
+};
+
+export { getUsersQuery, getUsersByTypeQuery, getNextJsBasicUsersQuery };

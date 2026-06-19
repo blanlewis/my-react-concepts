@@ -8,9 +8,10 @@ import { useCustomHook } from "@/app/utils/hook";
 const AppWrapper = ({ children }: { children: React.ReactNode }) => {
   const { fetchCustomHookData } = useCustomHook();
   const pathname = usePathname();
+  console.log("Current pathname:", pathname);
 
   useEffect(() => {
-    fetchCustomHookData();
+    fetchCustomHookData(pathname);
   }, [pathname]);
 
   return (

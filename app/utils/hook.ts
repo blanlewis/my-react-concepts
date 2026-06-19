@@ -2,7 +2,12 @@ import { useContext} from "react";
 import { CustomHookContext } from "./context";
 import { CustomHookState,CustomHookActionEnum, UserByTypeEnum,RightComponentToggleOptionsEnum} from "./types";
 // import { customHookInitialFetch } from "./service";
-import { getUsersFromApi, getUsersByTypeFromApi } from "./service";
+import { getUsersFromApi, getUsersByTypeFromApi,getNextJsBasicUsersFromApi } from "./service";
+
+enum RoutePathEnum {
+    ROOT_PAGE = "/",
+    NEXT_JS_BASICS_PAGE = "/nextJsBasics",
+}
 
 const useCustomHook = () => {
     const context = useContext(CustomHookContext);
@@ -17,9 +22,11 @@ const useCustomHook = () => {
     //     if (data) setCustomHookState(data);
     // };
 
-    const fetchCustomHookData = async () => {
+    const fetchCustomHookData = async (pathname: RoutePathEnum) => {
         try {
-            const users = await getUsersFromApi();
+            const users = await (pathname === RoutePathEnum.NEXT_JS_BASICS_PAGE
+                ? getNextJsBasicUsersFromApi(1, 10)
+                : getUsersFromApi());
             const usersByType = await getUsersByTypeFromApi(null);
             setCustomHookState({ nameAndRole: users, activeUserByTypeTab: null, usersByTypeData: usersByType });
         } catch (error) {

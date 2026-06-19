@@ -1,5 +1,5 @@
 import { UserByTypeEnum } from "./types";
-import { getUsersQuery, getUsersByTypeQuery } from "./graphqlQueries";
+import { getUsersQuery, getUsersByTypeQuery,getNextJsBasicUsersQuery } from "./graphqlQueries";
 
 // This was basic learning.
 // const customHookInitialFetch = async (): Promise<CustomHookState | null> => {
@@ -53,4 +53,32 @@ const getUsersByTypeFromApi = async (usersByType: UserByTypeEnum|null) => {
     return jsonResult.data.usersByType;
 };
 
-export { getUsersFromApi, getUsersByTypeFromApi };
+const getNextJsBasicUsersFromApi = async (
+    page: number,
+    size: number
+) => {
+    const request = {
+        query: getNextJsBasicUsersQuery(page, size),
+    };
+
+    const result = await fetch(
+        "http://localhost:8080/graphql",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(request),
+        }
+    );
+
+    if (!result.ok) {
+        throw new Error(`HTTP Error: ${result.status}`);
+    }
+
+    const jsonResult = await result.json();
+
+    return jsonResult.data.nextJsBasicUsers;
+};
+
+export { getUsersFromApi, getUsersByTypeFromApi, getNextJsBasicUsersFromApi };
