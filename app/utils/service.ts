@@ -21,7 +21,14 @@ const getUsersFromApi = async () => {
     const usersRequest = {
         query: getUsersQuery(),
     };
-    const result = await fetch("http://localhost:8080/graphql", {
+    // const result = await fetch("http://localhost:8080/graphql", {
+    //     method: "POST",
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(usersRequest),
+    // });
+    const result = await fetch(process.env.NEXT_PUBLIC_GRAPHQL_URL!, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -39,7 +46,7 @@ const getUsersByTypeFromApi = async (usersByType: UserByTypeEnum|null) => {
     const usersByTypeRequest = {
         query: getUsersByTypeQuery(usersByType),
     };
-    const result = await fetch("http://localhost:8080/graphql", {
+    const result = await fetch(process.env.NEXT_PUBLIC_GRAPHQL_URL!, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -61,8 +68,7 @@ const getNextJsBasicUsersFromApi = async (
         query: getNextJsBasicUsersQuery(page, size),
     };
 
-    const result = await fetch(
-        "http://localhost:8080/graphql",
+    const result = await fetch(process.env.NEXT_PUBLIC_GRAPHQL_URL!,
         {
             method: "POST",
             headers: {
